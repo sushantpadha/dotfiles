@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+           
+        {
+          "foreground": "#8FBC8F",
+          "style": "plain",
+          "template": "{{ .UserName }}@{{ .HostName }}:",
+          "type": "session"
+        },
+        {
+          "foreground": "#88c0d0",
+          "properties": {
+            "style": "agnoster"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#81A1C1",
+          "style": "plain",
+          "template": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} ",
+          "type": "git"
+        },
+        
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "#B48EAD",
+          "properties": {
+            "display_mode": "environment"
+          },
+          "template": "( {{ .Full }}) "
+        },
+        {
+          "foreground": "#A0A1A7",
+          "properties": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }}s ",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "#D08770",
+          "style": "plain",
+          "template": "$ ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "type": "rprompt",
+      "segments": [
+        {
+          "foreground": "#964b4b",
+          "style": "plain",
+          "template": " !{{ reason .Code }} ",
+          "type": "status"
+        }
+      ]
+    }
+  ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"🏚\" }} @ {{.HostName}}",
+  "version": 3
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+           
+        {
+          "foreground": "#FF0080",
+          "style": "plain",
+          "template": "{{ .UserName }}@{{ .HostName }}:",
+          "type": "session"
+        },
+        {
+          "foreground": "#0090FF",
+          "properties": {
+            "style": "agnoster"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#00FF7F",
+          "style": "plain",
+          "template": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} ",
+          "type": "git"
+        },
+        
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "##00FF00",
+          "properties": {
+            "display_mode": "environment"
+          },
+          "template": "( {{ .Full }}) "
+        },
+        {
+          "foreground": "#00FFFF",
+          "properties": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }}s ",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "#FFD700",
+          "style": "plain",
+          "template": "$ ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "type": "rprompt",
+      "segments": [
+        {
+          "foreground": "#FF0080",
+          "style": "plain",
+          "template": " !{{ reason .Code }} ",
+          "type": "status"
+        }
+      ]
+    }
+  ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"🏚\" }} @ {{.HostName}}",
+  "version": 3
+}

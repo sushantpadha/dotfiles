@@ -1,0 +1,19 @@
+[user]
+	name = sushantpadha
+	email = 24b1057@iitb.ac.in
+[core]
+	autocrlf = input
+[init]
+	defaultBranch = main
+[credential]
+	helper = manager
+	credentialStore = gpg
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = "code --wait --diff  "
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
