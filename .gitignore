@@ -4,6 +4,8 @@
 # Repo files
 !.gitignore
 !LICENSE
+!.bashrc
+!install.sh
 
 # Bash split files
 !bash/
