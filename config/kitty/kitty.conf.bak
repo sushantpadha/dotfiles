@@ -1,3 +1,5 @@
+include themes/Batman.conf
+
 # Enable remote control to do things like:
 # kitty @ launch --location=vsplit --cwd=current 
 allow_remote_control yes
@@ -7,9 +9,8 @@ map ctrl+shift+enter launch --location=vsplit --cwd=current
 map ctrl+shift+h launch --location=hsplit --cwd=current
 
 # ---- Bell ----
-enable_audio_bell no 
+enable_audio_bell no
 command_on_bell canberra-gtk-play -i bell
-notify_on_cmd_finish invisible 20
 
 # ---- Window ----
 remember_window_size  yes
@@ -17,19 +18,14 @@ initial_window_width  640
 initial_window_height 400
 
 # ---- Font ----
-font_size 12
-
-# ---- Clipboard (esp with tmux) ----
-copy_on_select yes
-clipboard_control write-clipboard write-primary read-clipboard read-primary no_append
+font_size 11.5
 
 # ---- Tabs ----
 tab_bar_style powerline
 tab_title_template "{index}: {title}"
 
 # ---- Performance ----
-scrollback_lines 5000
-scrollback_pager_history_size 10
+scrollback_lines 10000
 repaint_delay 8
 input_delay 0
 
@@ -58,50 +54,44 @@ map ctrl+, layout_action bias 40 50 62 70 76
 # https://github.com/Vista1nik/i3-neon80s/tree/master
 
 # font
-font_family JetBrainsMono
-font_size 12
+font_family Inconsolata Bold for powerline
+font_size 12.5
 
 # special
-# foreground       #ffffff
+foreground       #ffffff
 foreground_bold  #ffffff
-# cursor           #ffffff
-# background       #181c30
+cursor           #ffffff
+background       #181c30
 background_opacity 1.0
 
 # black
-# color0   #1b1d1e
-# color8   #505354
+color0   #1b1d1e
+color8   #505354
 
 # red
-# color1   #f92672
-# color9   #ff5995
+color1   #f92672
+color9   #ff5995
 
 # green
-# color2   #82b414
-# color10  #b6e354
+color2   #82b414
+color10  #b6e354
 
 # yellow
-# color3   #fd971f
-# color11  #feed6c
+color3   #fd971f
+color11  #feed6c
 
 # blue
-# color4   #0066cc
-# color12  #333399
+color4   #0066cc
+color12  #333399
 
 # magenta
-# color5   #8c54fe
-# color13  #9e6ffe
+color5   #8c54fe
+color13  #9e6ffe
 
 # cyan
-# color6   #465457
-# color14  #899ca1
+color6   #465457
+color14  #899ca1
 
 # white
-# color7   #ccccc6
-# color15  #f8f8f2
-
-
-# BEGIN_KITTY_THEME
-# Constant Perceptual Luminosity (dark)
-include current-theme.conf
-# END_KITTY_THEME
+color7   #ccccc6
+color15  #f8f8f2
