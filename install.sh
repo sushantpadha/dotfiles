@@ -30,6 +30,7 @@ declare -A LINKS=(
     ["config/omp-themes"]="$HOME/.config/omp-themes"
     ["config/picom"]="$HOME/.config/picom"
     ["config/yazi"]="$HOME/.config/yazi"
+    ["tmux/tmux.conf"]="$HOME/.tmux.conf"
 )
 
 log() { echo "[install] $*"; }

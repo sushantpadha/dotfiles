@@ -41,6 +41,10 @@
 !config/nvim/
 !config/nvim/**
 
+# Tmux config
+!tmux/
+!tmux/**
+
 # Logs and generated files
 *.log
 btop.log
