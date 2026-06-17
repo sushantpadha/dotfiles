@@ -1,7 +1,0 @@
-Host csea
-  HostName csea.cse.iitb.ac.in
-  User csea
-Host jbc-ec2
-    HostName sushant.tnkr.be
-    User user
-    IdentityFile ~/.ssh/bootcamp_ec2
