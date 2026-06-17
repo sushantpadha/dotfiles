@@ -20,7 +20,9 @@ done
 declare -A LINKS=(
     [".bashrc"]="$HOME/.bashrc"
     ["git/gitconfig"]="$HOME/.gitconfig"
+    ["git/gitconfig.local"]="$HOME/.gitconfig.local"
     ["ssh/config"]="$HOME/.ssh/config"
+    ["ssh/config.local"]="$HOME/.ssh/config.local"
     ["config/btop"]="$HOME/.config/btop"
     ["config/fastfetch"]="$HOME/.config/fastfetch"
     ["config/htop"]="$HOME/.config/htop"
@@ -30,7 +32,6 @@ declare -A LINKS=(
     ["config/omp-themes"]="$HOME/.config/omp-themes"
     ["config/picom"]="$HOME/.config/picom"
     ["config/yazi"]="$HOME/.config/yazi"
-    ["tmux/tmux.conf"]="$HOME/.tmux.conf"
 )
 
 log() { echo "[install] $*"; }
@@ -41,6 +42,11 @@ link_file() {
     local tgt="$2"
 
     if ! $REVERT; then
+        if [[ ! -e "$src" ]]; then
+            log "skip (missing source): $src"
+            return
+        fi
+
         # Backup existing non-symlink
         if [[ -e "$tgt" && ! -L "$tgt" ]]; then
             if $DRY_RUN; then

@@ -20,9 +20,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
     export PYTHONPATH="$PYTHONPATH:$HOME/tools/z3-4.15.4-x64-glibc-2.39/bin/python"
 }
 
-export BOOST_ROOT="/usr/local"
-export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-export CPLUS_INCLUDE_PATH="/usr/local/include:$CPLUS_INCLUDE_PATH"
-
 # Use bat as manpager if available
 command -v batcat &>/dev/null && export MANPAGER="batcat -l man --style=header --paging=always"

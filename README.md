@@ -2,6 +2,9 @@
 
 Personal dotfiles for `~`. Managed with plain symlinks via `install.sh`.
 
+> [!note] Machine-specific config
+> Machine-specific config is kept in files named `*.local`. Please populate and track these manually.
+
 ## Layout
 
 ```
@@ -32,7 +35,7 @@ dotfiles/
 ## Install
 
 ```bash
-git clone https://github.com/sushantpadha/dotfiles ~/dotfiles
+if [ -d ~/dotfiles/.git ]; then git -C ~/dotfiles pull --ff-only; else git clone https://github.com/sushantpadha/dotfiles ~/dotfiles; fi
 ~/dotfiles/install.sh
 ```
 
@@ -48,7 +51,7 @@ Existing files are backed up to `<file>.bak` before linking.
 
 **Method 1 — via GitHub (preferred):**
 ```bash
-ssh user@server "git clone https://github.com/sushantpadha/dotfiles ~/dotfiles && ~/dotfiles/install.sh"
+ssh user@server "if [ -d ~/dotfiles/.git ]; then git -C ~/dotfiles pull --ff-only; else git clone https://github.com/sushantpadha/dotfiles ~/dotfiles; fi; ~/dotfiles/install.sh"
 ```
 
 **Method 2 — rsync direct (no GitHub needed):**

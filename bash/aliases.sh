@@ -60,10 +60,6 @@ syspeek() {
     done
 }
 
-alias warpon="sudo systemctl start warp-svc ; sudo systemctl start warp-taskbar ; sleep 1 ; warp-cli connect"
-alias warpoff="warp-cli disconnect ; sleep 1 ; sudo systemctl stop warp-svc ; sudo systemctl stop warp-taskbar"
-
-alias play-zork='xzip /home/dietcoke/z-games/zork1.z5 &'
 alias rm='trash-put'
 
 alias mv='mv -i'
