@@ -23,6 +23,7 @@ declare -A LINKS=(
     ["git/gitconfig.local"]="$HOME/.gitconfig.local"
     ["ssh/config"]="$HOME/.ssh/config"
     ["ssh/config.local"]="$HOME/.ssh/config.local"
+    ["tmux/tmux.conf"]="$HOME/.tmux.conf"
     ["config/btop"]="$HOME/.config/btop"
     ["config/fastfetch"]="$HOME/.config/fastfetch"
     ["config/htop"]="$HOME/.config/htop"

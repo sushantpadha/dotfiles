@@ -20,6 +20,10 @@
 !ssh/
 !ssh/config
 
+# Tmux config
+!tmux/
+!tmux/tmux.conf
+
 # App configs
 !config/
 !config/omp-themes/
