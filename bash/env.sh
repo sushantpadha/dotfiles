@@ -8,6 +8,10 @@ export PATH="$PATH:$HOME/.local/bin"
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Cuda
+export PATH="/usr/local/cuda-13.0/bin/:$PATH"
+export NVCC_CCBIN=/usr/bin/g++-15
+
 # Go
 [ -d /usr/local/go/bin ] && export PATH="$PATH:/usr/local/go/bin"
 
