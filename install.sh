@@ -33,7 +33,6 @@ declare -A LINKS=(
     ["config/omp-themes"]="$HOME/.config/omp-themes"
     ["config/picom"]="$HOME/.config/picom"
     ["config/yazi"]="$HOME/.config/yazi"
-    ["claude-skills/plain-docs"]="$HOME/.claude/skills/plain-docs"
 )
 
 log() { echo "[install] $*"; }
@@ -49,13 +48,18 @@ link_file() {
             return
         fi
 
-        # Backup existing non-symlink
+        # Backup existing non-symlink. Never clobber a prior backup: if
+        # $tgt.bak is already taken, fall back to a timestamped name.
         if [[ -e "$tgt" && ! -L "$tgt" ]]; then
+            local bak="$tgt.bak"
+            if [[ -e "$bak" ]]; then
+                bak="$tgt.bak.$(date +%Y%m%d%H%M%S)"
+            fi
             if $DRY_RUN; then
-                dry "backup $tgt -> $tgt.bak"
+                dry "backup $tgt -> $bak"
             else
-                log "backup $tgt -> $tgt.bak"
-                mv "$tgt" "$tgt.bak"
+                log "backup $tgt -> $bak"
+                mv "$tgt" "$bak"
             fi
         fi
 

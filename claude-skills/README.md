@@ -11,4 +11,7 @@ Install via Claude Code's plugin marketplace: `/plugin marketplace add <repo>` t
 
 ## Custom
 
-- **[`plain-docs/`](plain-docs/SKILL.md)**: kills hedge-y, padded technical-writing register in favor of short, direct prose. This repo is the authoritative copy; `install.sh` symlinks it to `~/.claude/skills/plain-docs`.
+- **[`plain-docs/`](plain-docs/SKILL.md)**: kills hedge-y, padded technical-writing register in favor of short, direct prose. This repo is the authoritative copy. `install.sh` doesn't symlink it (dotfiles-only, doesn't touch `claude-skills/`); link it manually:
+  ```bash
+  ln -s ~/dotfiles/claude-skills/plain-docs ~/.claude/skills/plain-docs
+  ```

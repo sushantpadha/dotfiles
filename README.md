@@ -54,6 +54,7 @@ dotfiles/
 │   └── shimeji/
 ├── .bashrc         # → ~/.bashrc
 ├── install.sh
+├── pack-dotfiles.sh  # tar up just the dotfiles, for scp to a server with no GitHub access
 └── utils.md        # where misc non-packaged tools live locally
 ```
 
@@ -72,14 +73,19 @@ Claude Code skills/plugins in use, tracked in [`claude-skills/`](claude-skills/R
 
 ## Sync to a remote server
 
-**Method 1, via GitHub (preferred):**
+`install.sh` only ever touches the dotfiles themselves (`bash/`, `config/`, `git/`, `ssh/`, `tmux/`, `.bashrc`). It never pulls in `tools/`, `claude-skills/`, `utils.md`, or `CLAUDE.md`: those are notes for this machine, not things a server's shell needs.
+
+**Method 1, via GitHub (server has internet access):**
 ```bash
 ssh user@server "if [ -d ~/dotfiles/.git ]; then git -C ~/dotfiles pull --ff-only; else git clone https://github.com/sushantpadha/dotfiles ~/dotfiles; fi; ~/dotfiles/install.sh"
 ```
 
-**Method 2, rsync direct (no GitHub needed):**
+**Method 2, scp a tarball (no GitHub access from the server):**
 ```bash
-rsync -av ~/dotfiles/ user@server:~/dotfiles/ && ssh user@server "~/dotfiles/install.sh"
+./pack-dotfiles.sh                      # builds dotfiles.tar.gz from git HEAD, dotfiles only
+scp dotfiles.tar.gz user@server:~/dotfiles.tar.gz
+ssh user@server "mkdir -p ~/dotfiles && tar -xzf ~/dotfiles.tar.gz -C ~/dotfiles && ~/dotfiles/install.sh"
 ```
+`pack-dotfiles.sh` archives `git HEAD`, so commit first: uncommitted edits won't be included (it warns if any exist).
 
-`install.sh` on a server only links what exists. Missing apps are skipped gracefully; symlinks still resolve once the app is installed later.
+Both methods, and `install.sh` itself, were tested end to end against a live Ubuntu 18.04 box (`ssh websecy`) with a sandboxed `$HOME`: backup-and-relink of pre-existing real files, replacing a stale symlink, `--dry-run`, `--revert` restoring original content, idempotent re-runs, and a fix so a second install never clobbers an existing `.bak` (falls back to a timestamped name instead). `install.sh` on a server only links what exists. Missing apps are skipped gracefully; symlinks still resolve once the app is installed later.
