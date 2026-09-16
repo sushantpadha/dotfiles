@@ -15,6 +15,9 @@ alias fd='fdfind'
 alias pbcopy='xclip -selection clipboard'
 alias bat='batcat'
 
+alias src='source ~/.bashrc'
+alias edrc='nvim ~/.bashrc && source ~/.bashrc'
+
 # print folder sizes
 watcher() {
     local dir="${1:-.}"
