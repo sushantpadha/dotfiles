@@ -7,6 +7,7 @@
 !.bashrc
 !install.sh
 !README.md
+!CLAUDE.md
 
 # Bash split files
 !bash/
@@ -23,6 +24,17 @@
 # Tmux config
 !tmux/
 !tmux/tmux.conf
+
+# Tool setup notes (docs + scripts only — binaries/packs dropped in here stay untracked)
+!tools/
+!tools/**/
+!tools/**/*.md
+!tools/**/*.sh
+!utils.md
+
+# Claude Code skills
+!claude-skills/
+!claude-skills/**
 
 # App configs
 !config/

@@ -33,6 +33,7 @@ declare -A LINKS=(
     ["config/omp-themes"]="$HOME/.config/omp-themes"
     ["config/picom"]="$HOME/.config/picom"
     ["config/yazi"]="$HOME/.config/yazi"
+    ["claude-skills/plain-docs"]="$HOME/.claude/skills/plain-docs"
 )
 
 log() { echo "[install] $*"; }
