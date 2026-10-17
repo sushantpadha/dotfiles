@@ -25,4 +25,12 @@ export NVCC_CCBIN=/usr/bin/g++-15
 }
 
 # Use bat as manpager if available
-command -v batcat &>/dev/null && export MANPAGER="batcat -l man --style=header --paging=always"
+#command -v batcat &>/dev/null && export MANPAGER="batcat -l man --style=header --paging=always"
+export MANROFFOPT="-P-c"
+export MANPAGER="sh -c 'col -bx | batcat --language=man --style=header --paging=always'"
+
+# haskell
+[ -f "/home/dietcoke/.ghcup/env" ] && . "/home/dietcoke/.ghcup/env" # ghcup-env
+
+# https://github.com/sushantpadha/shcripts
+export SHCRIPTS_DIR="$HOME/shcripts"
