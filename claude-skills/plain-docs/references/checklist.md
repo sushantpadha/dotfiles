@@ -31,6 +31,9 @@ avoid it.
       cost of clarity? Revert to the plain repeated term.
 - [ ] Any leftover copy-paste artifacts (oaicite, contentReference, tracking
       params in URLs)? Strip them.
+- [ ] Any fragment, bare "Label: fact" line, colon chain, or sentence with
+      its subject or articles dropped? Rewrite it as a full, natural
+      sentence ("We do ...", "It does ..."). Tables and code may stay terse.
 - [ ] Does the format match what was actually asked for (README structure,
       docstring convention, plain prose) rather than a generic default?
 - [ ] Read the first and last sentence in isolation. Do they carry real

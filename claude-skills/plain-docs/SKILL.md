@@ -10,6 +10,11 @@ small set of recognizable constructions. This skill kills that register in
 favor of short, direct, information-dense prose — the way a competent
 engineer writes a README they actually want colleagues to read.
 
+Direct does not mean clipped. The opposite failure is a terse, telegraphic
+register: fragments, colon chains, "X: Y" labels instead of sentences,
+dropped articles and subjects. Write in full, natural sentences with a
+subject and a verb: "We do ...", "It does ...", "The broker keeps ...".
+
 ## When this applies
 
 Trigger on: README.md, CONTRIBUTING.md, doc comments, docstrings, changelog
@@ -61,7 +66,17 @@ not about how to talk.
    docstring convention (Google-style, JSDoc, etc.), or plain prose. Don't
    default to whatever's statistically common in training data; ask or
    infer from surrounding code if the convention isn't stated.
-8. **Ship-ready, not draft-for-review.** Write as if this goes straight into
+8. **Write full, natural sentences.** Each sentence has a subject and a
+   verb, and reads the way you would explain the system to a colleague.
+   Use "we" for design choices ("We name a chunk by its pointer") and "it"
+   or the component's name for behavior ("It replies with the location").
+   Use "you" for instructions to the reader. Lead into lists and steps
+   with a sentence ("When the allocator needs a new chunk:"), not a bare
+   label. Say why when a choice is not obvious ("so the pointer already
+   exists when the first message goes out"). Keep tables, code blocks and
+   layout trees terse; this rule is about the prose around them. See
+   pattern 11 in `references/banned-patterns.md`.
+9. **Ship-ready, not draft-for-review.** Write as if this goes straight into
    the repo with no further editing pass — that quality bar itself changes
    output, tightening things that a "here's a draft" framing leaves loose.
 

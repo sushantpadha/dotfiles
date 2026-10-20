@@ -134,3 +134,32 @@ left in pasted URLs, or other debris from copying content between tools.
 
 **Fix:** Strip these before the doc ships. They're not a style issue, just
 a cleanliness one — but they're a dead giveaway the doc wasn't reread.
+
+## 11. Telegraphic, over-compressed prose
+
+**Looks like:** Fragments and labels instead of sentences. "Client crash:
+handled by driver." "Flags: `--a`, `--b` (4)." "Errors: `alloc` returns
+`nullptr`." "`c`/`u` = what the backend does where it differs." Colon
+chains, dropped articles and subjects, every sentence as short and
+assertive as it can be.
+
+**Why it's a tell:** It overcorrects for padding. Each line is dense, but
+the reader has to rebuild the grammar and the reasoning that links one
+fact to the next. It reads like notes, not like an explanation.
+
+**Fix:** Write each point as a full sentence with a subject and a verb, in
+a natural voice. Use "we" for design choices, "it" or the component's name
+for what it does, and "you" for instructions. Add the "because" or "so"
+when a choice is not obvious. Keep the same facts; only the wording
+changes. Tables, code and layout trees stay terse.
+
+> Before: "Broker holds no memory. No handles cross processes, so tenant
+> crash: driver frees, socket closes, broker drops accounts."
+> After: "The broker does not hold any memory itself. Since no handles
+> cross process boundaries, a crashed tenant needs no special cleanup: the
+> driver frees its memory, its socket closes, and the broker drops its
+> accounts."
+
+> Before: "Hints block until the copy is done. Non-blocking hints: TODO."
+> After: "Hints block until the copy is done. We plan to add non-blocking
+> hints later."
