@@ -34,3 +34,7 @@ export MANPAGER="sh -c 'col -bx | batcat --language=man --style=header --paging=
 
 # https://github.com/sushantpadha/shcripts
 export SHCRIPTS_DIR="$HOME/shcripts"
+
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+
