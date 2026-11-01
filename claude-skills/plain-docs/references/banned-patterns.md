@@ -1,165 +1,215 @@
-# Banned patterns — catalog and fixes
+# Banned patterns
 
-For each pattern: what it looks like, why it's a tell, and the fix with a
-before/after example.
+The patterns fall into three tiers. "Never use" patterns should not appear
+at all. "Use rarely" patterns are fine once or twice in a document when they
+are the clearest option. "Use moderately" patterns are normal writing tools
+that turn into tells when every paragraph leans on them.
 
-## 1. Negative parallelism ("not X, it's Y")
+Each entry shows what the pattern looks like and how to fix it.
 
-**Looks like:** "It's not just a linter, it's a whole workflow." "This isn't
-a config file — it's the source of truth." "Not a bug, a feature."
+## Never use
 
-**Why it's a tell:** It's a rhetorical shape borrowed from persuasive
-writing, applied reflexively to plain description where no contrast is
-needed. Real technical writing rarely needs to set up a wrong idea just to
-knock it down.
+### 1. Non-ASCII punctuation and symbols
 
-**Fix:** State the true thing. Drop the strawman entirely.
+This covers em dashes, en dashes, arrows, curly quotes, the single-character
+ellipsis, and footnote arrows like `↩`. Use `--`, `->`, straight quotes and
+`...` instead. Most em dashes read better as a period or comma.
 
-> Before: "This isn't just a caching layer, it's a full request pipeline."
-> After: "This is a full request pipeline, not only a caching layer."
-> Better: "Handles caching, retries, and request batching."
+> Before: "Fast — no dependencies."
+> After: "It is fast and has no dependencies."
 
-## 2. Hedging sprinkled throughout
+> Before: "config → build → deploy"
+> After: "config -> build -> deploy"
 
-**Looks like:** "This might improve performance in some cases." "It's
-generally recommended to..." "This could potentially cause issues if..."
-repeated every paragraph.
+You can find stray characters with `grep -nP '[^\x00-\x7F]' FILE`.
 
-**Why it's a tell:** Real uncertainty is usually specific and occasional,
-not a constant background hum. Constant hedging reads as either
-not-understanding-your-own-system or reflexive caution.
+### 2. Emoji
 
-**Fix:** State the main behavior directly and confidently. If genuine
-caveats exist, collect them into one place (a "Known limitations" or
-"Notes" section) instead of scattering qualifiers through every sentence.
+Do not put emoji in headings, list items, status lines or anywhere else.
 
-> Before: "This function will generally return the cached value, though in
-> some cases it might recompute, depending on staleness, which can
-> sometimes vary."
-> After: "Returns the cached value unless it's stale, in which case it
-> recomputes." (Then, if truly needed, a one-line note elsewhere on when
-> staleness checks can lag.)
+> Before: "## 🚀 Quick start"
+> After: "## Quick start"
 
-## 3. Filler openers and closers
+> Before: "✅ All tests pass"
+> After: "All tests pass."
 
-**Looks like:** "It's worth noting that...", "Essentially,", "Simply put,",
-opening paragraphs that restate the title, closing paragraphs that restate
-the whole document ("In conclusion, this tool provides...").
+### 3. Negative parallelism
 
-**Why it's a tell:** These add zero information. They're throat-clearing —
-the writing equivalent of "um" before starting to actually talk.
+This pattern sets up a wrong idea so it can knock it down. It covers "not X,
+it's Y", "not just X but Y", "Y rather than X" and "no X, no Y, just Z".
+State the true thing directly.
 
-**Fix:** Delete the opener/closer sentence and see if anything is lost.
-Usually nothing is. Start with the real first sentence. End on the last
-substantive point.
+> Before: "It's not just a linter, it's a whole workflow."
+> After: "It runs lint, format and tests in one pass."
 
-> Before: "It's worth noting that this script requires Python 3.10+."
-> After: "Requires Python 3.10+."
+> Before: "No config, no setup, just run it."
+> After: "It runs without a config file."
 
-## 4. Forced rule-of-three
+### 4. Inflated vocabulary
 
-**Looks like:** "Fast, reliable, and easy to use." "Simple, flexible, and
-powerful." Any list of exactly three adjectives that feels reached-for.
+These words sound important but carry no information: delve, leverage,
+robust, seamless, utilize, showcase, boast, intricate, meticulous, pivotal,
+crucial, landscape (abstract), tapestry, testament, foster, garner,
+multifaceted, vibrant, holistic, elevate, empower, cutting-edge,
+underscore (as a verb). Use the plain word, or say the concrete thing.
 
-**Why it's a tell:** Three items is a rhythm pattern from marketing copy,
-not a description of anything specific. It's usually filler dressed as
-substance.
+> Before: "It leverages a robust caching layer."
+> After: "It caches responses in Redis for 5 minutes."
 
-**Fix:** Cut to what's actually true and specific. One real claim beats
-three vague ones.
+> Before: "Let's delve into the configuration."
+> After: "The config file has three sections."
 
-> Before: "A fast, reliable, and scalable job queue."
-> After: "Processes ~50k jobs/sec on a single node; horizontally shardable."
+### 5. Inflated significance and promotional tone
 
-## 5. Inflated / abstract vocabulary
+This includes "stands as a testament to", "plays a pivotal role", "marks a
+shift", "the evolving landscape", "groundbreaking", "renowned" and "in the
+heart of". Say what happened, with a number if you have one.
 
-**Banned or near-banned words:** delve, leverage, robust, seamless, elevate,
-holistic, underscore (as a verb), tapestry, testament, cutting-edge,
-game-changing, empower, streamline (as vague filler), utilize (when "use"
-works).
+> Before: "This refactor stands as a testament to our focus on quality."
+> After: "This refactor cut the module from 1,200 to 400 lines."
 
-**Why it's a tell:** These words carry no concrete information — they
-signal importance without stating anything specific.
+> Before: "A groundbreaking approach to logging."
+> After: "It writes structured JSON logs."
 
-**Fix:** Replace with the concrete thing being described.
+### 6. Filler openers and closers
 
-> Before: "Leverages a robust caching architecture to deliver a seamless
-> experience."
-> After: "Caches responses in Redis with a 5-minute TTL."
+Openers include "It's worth noting that", "Essentially", "Simply put" and
+"It's important to remember". Closers include "In conclusion", "Overall", a
+paragraph that restates the document, and upbeat endings like "Despite these
+challenges, the future looks bright." Delete the sentence and check whether
+anything was lost. Usually nothing was.
 
-## 6. Fake significance
+> Before: "It's worth noting that this needs Python 3.10."
+> After: "It needs Python 3.10."
 
-**Looks like:** "stands as a testament to," "marks a pivotal moment," "will
-leave an indelible mark," "represents a paradigm shift."
+> Before: "In summary, this tool makes builds easier and faster."
+> After: (delete it and end on the last real point)
 
-**Fix:** Just say what happened, with a number or fact if you have one.
+### 7. Chatbot and tool artifacts
 
-> Before: "This refactor stands as a testament to the team's commitment to
-> code quality."
-> After: "This refactor cut the module's cyclomatic complexity by half."
+This covers "I hope this helps", "Here's a README for...", "Let me know if",
+knowledge-cutoff lines, unfilled placeholders like `[Your Name]`, and debris
+such as `oaicite`, `contentReference` or `utm_source=chatgpt.com` in URLs.
+Remove them before the document ships.
 
-## 7. Present-participle padding
+> Before: "Here's an updated version of your README:"
+> After: (delete it)
 
-**Looks like:** Sentences that end in a dangling "-ing" clause that adds a
-vague value judgment: "...which greatly enhances usability," "...thereby
-improving performance," "...highlighting its importance."
+> Before: "Contact: [your-email]"
+> After: Fill in the real value, or remove the line.
 
-**Fix:** Either make the claim concrete and keep it, or cut it.
+## Use rarely
 
-> Before: "Added input validation, greatly improving reliability."
-> After: "Added input validation." (If reliability impact is real and
-> measurable, state the number instead of the vague clause.)
+### 8. Rule of three
 
-## 8. Overuse of em dashes
+Three adjectives or three short phrases in a row ("fast, scalable and
+reliable") are a rhythm habit, not a description. Keep a list of three only
+when all three items carry real information.
 
-**Looks like:** Every other sentence broken up with an em dash for
-emphasis — like this — regardless of whether it's needed.
+> Before: "A fast, reliable and scalable job queue."
+> After: "It processes about 50k jobs per second on one node."
 
-**Fix:** Use a period, comma, or colon most of the time. Save the em dash
-for when it's actually the clearest option — rare.
+### 9. Scattered hedging
 
-## 9. Synonym-cycling for variety's sake
+Words like "might", "could potentially", "generally" and "in some cases"
+should not appear in every paragraph. State the main behavior with
+confidence. Gather real caveats into one short section near the end. Do not
+remove real uncertainty, because false confidence is a worse failure.
 
-**Looks like:** Calling the same thing "the function," then "this utility,"
-then "the aforementioned method," then "said routine" — swapping words
-purely to avoid repetition, at the cost of clarity.
+> Before: "This might generally help startup time in some cases."
+> After: "It cuts cold start from 900 ms to 200 ms." (Caveats go in one
+> section at the end.)
 
-**Fix:** Repetition of the same term is fine and usually clearer. Vary
-sentence *structure* and *length*, not vocabulary for its own sake.
+### 10. Trailing "-ing" padding
 
-## 10. Copy-paste / tool artifacts
+A clause like "..., ensuring reliability" or "..., highlighting its
+importance" adds a vague value judgment. Make it concrete or cut it.
 
-**Looks like:** Stray `oaicite`, `contentReference`, tracking query params
-left in pasted URLs, or other debris from copying content between tools.
+> Before: "Added retries, greatly improving reliability."
+> After: "Added retries with exponential backoff, up to 3 attempts."
 
-**Fix:** Strip these before the doc ships. They're not a style issue, just
-a cleanliness one — but they're a dead giveaway the doc wasn't reread.
+### 11. Avoiding "is" and "has"
 
-## 11. Telegraphic, over-compressed prose
+Phrases like "serves as", "functions as", "stands as", "boasts" and "refers
+to" replace a plain "is" or "has". Use the plain verb.
 
-**Looks like:** Fragments and labels instead of sentences. "Client crash:
-handled by driver." "Flags: `--a`, `--b` (4)." "Errors: `alloc` returns
-`nullptr`." "`c`/`u` = what the backend does where it differs." Colon
-chains, dropped articles and subjects, every sentence as short and
-assertive as it can be.
+> Before: "This file serves as the entry point."
+> After: "This file is the entry point."
 
-**Why it's a tell:** It overcorrects for padding. Each line is dense, but
-the reader has to rebuild the grammar and the reasoning that links one
-fact to the next. It reads like notes, not like an explanation.
+### 12. Vague claims and attribution
 
-**Fix:** Write each point as a full sentence with a subject and a verb, in
-a natural voice. Use "we" for design choices, "it" or the component's name
-for what it does, and "you" for instructions. Add the "because" or "so"
-when a choice is not obvious. Keep the same facts; only the wording
-changes. Tables, code and layout trees stay terse.
+This covers "widely considered", "experts recommend", "it is generally
+accepted" and vague links like "associated with" or "in connection with".
+Name the source or the actual relationship, or cut the claim.
 
-> Before: "Broker holds no memory. No handles cross processes, so tenant
-> crash: driver frees, socket closes, broker drops accounts."
-> After: "The broker does not hold any memory itself. Since no handles
-> cross process boundaries, a crashed tenant needs no special cleanup: the
-> driver frees its memory, its socket closes, and the broker drops its
-> accounts."
+> Before: "This is widely considered best practice."
+> After: "The Go style guide recommends this."
 
-> Before: "Hints block until the copy is done. Non-blocking hints: TODO."
-> After: "Hints block until the copy is done. We plan to add non-blocking
-> hints later."
+### 13. Synonym cycling
+
+Calling one thing "the function", then "this utility", then "said routine"
+makes the reader wonder if these are different things. Repeat the same term.
+Vary sentence structure instead of vocabulary.
+
+> Before: "The parser reads the file. This utility then checks each token,
+> and said routine reports errors."
+> After: "The parser reads the file. The parser then checks each token and
+> reports errors."
+
+### 14. Bold overuse and bold-label lists
+
+Bold in running prose, and lists where every item starts with a bold label
+and a colon, look generated. Use bold for the one or two things a skimming
+reader must not miss. Turn label lists into sentences or a table.
+
+> Before: "- **Speed:** It is fast."
+> After: "It handles 10k requests per second."
+
+### 15. Title Case headings
+
+Use sentence case for headings.
+
+> Before: "## Getting Started With The CLI"
+> After: "## Getting started with the CLI"
+
+### 16. Telegraphic prose
+
+This is the opposite failure to padding: fragments, "Label: fact" lines,
+colon chains, and dropped subjects or articles. Each point should be a full
+sentence with a subject and a verb. Use "we" for design choices, "it" or the
+component's name for behavior, and "you" for instructions. Add the "because"
+or "so" when a choice is not obvious. Tables, code and layout trees can stay
+terse.
+
+> Before: "Tenant crash: driver frees, socket closes, broker drops accounts."
+> After: "When a tenant crashes, the driver frees its memory, its socket
+> closes, and the broker drops its accounts."
+
+## Use moderately
+
+### 17. Sentence-initial transitions
+
+"Additionally", "Furthermore" and "Moreover" at the start of a sentence are
+fine now and then. Most of them can be deleted with no loss.
+
+> Before: "Additionally, the CLI supports JSON output."
+> After: "The CLI also supports JSON output."
+
+### 18. Same-rhythm sentence chains
+
+Chaining every sentence with "and", "which" or a semicolon makes prose
+monotonous. Mix short and long sentences.
+
+> Before: "It reads the config, which sets the port, and it then starts the
+> server, which listens for requests."
+> After: "It reads the port from the config. Then it starts the server."
+
+### 19. Markdown over-structure
+
+Headings on a five-line document, `---` between every section, and deep
+nested bullets add structure the content does not need. Use headings and
+lists only when the document is long enough to need them.
+
+> Before: A README with "## Overview", "## Description" and "## Summary",
+> each one sentence long.
+> After: One paragraph with no headings.

@@ -1,43 +1,67 @@
 # Pre-ship checklist
 
-Run this against the actual draft, line by line, before writing the file.
-This is a second pass, done after drafting — not a mental note made while
-writing. Catching your own tic requires rereading it, not just intending to
-avoid it.
+Run this against the actual draft, line by line, before you write the file.
+It is a second pass after drafting. Catching your own habits takes a reread,
+not an intention.
 
-- [ ] Any "not X, it's Y" or "not just X but Y" construction? Rewrite as a
-      direct positive statement.
-- [ ] Any hedge word or phrase in more than one place? ("might," "could
-      potentially," "generally," "in some cases," "it's recommended that")
-      Collapse them into a single caveats section near the end, or cut if
-      not load-bearing.
-- [ ] Any filler opener ("It's worth noting," "Essentially," "Simply put")
-      or filler closer ("In conclusion," a summary paragraph that restates
-      the doc)? Delete it.
-- [ ] Any exactly-three-adjective list? Check if all three are earning
-      their place. If not, cut to what's true and specific.
-- [ ] Any word from the banned-vocabulary list (delve, leverage, robust,
-      seamless, elevate, holistic, cutting-edge, game-changing, empower,
-      utilize)? Replace with the concrete detail.
-- [ ] Any "stands as a testament," "pivotal moment," "paradigm shift," or
-      similar inflated-significance phrase? Replace with the actual fact or
-      number, or cut.
-- [ ] Any dangling "-ing" clause tacked onto a sentence for vague emphasis
-      ("...greatly improving X," "...highlighting its importance")? Cut or
-      make concrete.
-- [ ] Count the em dashes. More than one or two in the whole doc? Convert
-      most to periods or commas.
-- [ ] Any place where a word was swapped purely to avoid repetition, at the
-      cost of clarity? Revert to the plain repeated term.
-- [ ] Any leftover copy-paste artifacts (oaicite, contentReference, tracking
-      params in URLs)? Strip them.
-- [ ] Any fragment, bare "Label: fact" line, colon chain, or sentence with
-      its subject or articles dropped? Rewrite it as a full, natural
-      sentence ("We do ...", "It does ..."). Tables and code may stay terse.
-- [ ] Does the format match what was actually asked for (README structure,
-      docstring convention, plain prose) rather than a generic default?
-- [ ] Read the first and last sentence in isolation. Do they carry real
-      information, or could they be deleted with nothing lost?
+## Never use
 
-If a line fails a check, fix it now — don't note it and move on. This is
-the last pass before the file gets written.
+- [ ] Run `grep -nP '[^\x00-\x7F]' FILE`. Replace em dashes, arrows and curly
+      quotes with `--`, `->` and straight quotes.
+- [ ] Are there any emoji? Remove them.
+- [ ] Is there any "not X, it's Y", "not just X but Y", "Y rather than X" or
+      "no X, just Y"? Rewrite it as a direct statement.
+- [ ] Is there any word from the inflated-vocabulary list (delve, leverage,
+      robust, seamless, utilize, showcase, pivotal, crucial...)? Use the plain
+      word or the concrete detail.
+- [ ] Is there any inflated significance or promotional phrasing ("testament
+      to", "pivotal role", "groundbreaking")? State the fact instead.
+- [ ] Is there a filler opener or closer, or a closing recap? Delete it.
+- [ ] Are there chatbot lines, placeholders, `oaicite` or tracking params?
+      Remove them.
+
+## Use rarely
+
+- [ ] Count three-item lists. Does each item carry real information?
+- [ ] Do hedges appear in more than one place? Move real caveats to one
+      section at the end.
+- [ ] Is there a trailing "-ing" clause that adds a vague judgment? Cut it or
+      make it concrete.
+- [ ] Is "serves as", "functions as" or "boasts" standing in for "is" or
+      "has"?
+- [ ] Is there a vague attribution ("widely considered", "experts say")?
+      Name the source or cut it.
+- [ ] Is one thing called by several names? Pick one.
+- [ ] Is bold used in running prose, or as a label on every list item?
+- [ ] Are the headings in sentence case?
+- [ ] Is there any fragment, "Label: fact" line or dropped subject? Write it
+      as a full sentence. Tables and code can stay terse.
+
+## Use moderately
+
+- [ ] Do many sentences start with "Additionally", "Furthermore" or
+      "Moreover"?
+- [ ] Do sentences all have the same shape and length?
+- [ ] Does the document have more headings and nesting than its length needs?
+
+## Reports only
+
+- [ ] Did you ask the user about sources, non-standard terms and unclear
+      content before drafting?
+- [ ] Does every claim match the evidence and the tested setup?
+- [ ] Does each sentence hold one idea, with at most two clauses?
+- [ ] Is the tone "we did, we found", with no passive or impersonal voice?
+- [ ] Does each undefined special term have the user's sign-off?
+- [ ] Do graph descriptions use only one to three numbers?
+- [ ] Is anything from outside the report's sources included?
+- [ ] Is each metric called by the same name as in the figures and tables?
+
+## Always
+
+- [ ] Does the format match what was asked for, such as README structure,
+      docstring convention or plain prose?
+- [ ] Read the first and last sentence on their own. Do they carry real
+      information?
+
+If a line fails a check, fix it now. This is the last pass before the file
+gets written.
